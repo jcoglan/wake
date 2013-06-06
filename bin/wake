@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+var wake   = require('../lib/wake'),
+    fs     = require('fs'),
+    path   = require('path'),
+    exists = fs.existsSync || path.existsSync;
+
+var pkgJSON  = 'package.json',
+    wakeJSON = 'wake.json',
+    pth      = null,
+    config   = null;
+
+try {
+  if (exists(wakeJSON)) {
+    pth    = wakeJSON;
+    config = JSON.parse(fs.readFileSync(wakeJSON, 'utf8'));
+  } else if (exists(pkgJSON)) {
+    pth    = pkgJSON;
+    config = JSON.parse(fs.readFileSync(pkgJSON, 'utf8')).wake;
+  }
+} catch (e) {
+  console.error('File ' + pth + ' contains invalid JSON');
+  process.exit(1);
+}
+
+if (!pth) {
+  console.error('No wake config found; create wake.json or an "wake" field in package.json');
+  process.exit(1);
+}
+
+if (!config) {
+  console.error('No wake config found');
+  process.exit(1);
+}
+
+var build = wake.build(path.resolve(process.cwd()), config);
+build.run();
+

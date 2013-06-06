@@ -1,0 +1,21 @@
+{ "name"            : "wake"
+, "description"     : "A build tool for web stuff"
+, "homepage"        : "http://github.com/jcoglan/wake"
+, "author"          : "James Coglan <jcoglan@gmail.com> (http://jcoglan.com/)"
+, "keywords"        : ["build"]
+, "license"         : "MIT"
+
+, "version"         : "0.1.0"
+, "engines"         : {"node": ">=0.4.0"}
+, "main"            : "./lib/wake"
+, "bin"             : {"wake": "./bin/wake"}
+, "preferGlobal"    : true
+, "dependencies"    : {"ejs": "", "mkdirp": "", "uglify-js": ">=2.0.0"}
+
+, "repository"      : { "type"  : "git"
+                      , "url"   : "git://github.com/jcoglan/wake.git"
+                      }
+
+, "bugs"            : "http://github.com/jcoglan/wake/issues"
+}
+
