@@ -11,6 +11,25 @@ $ npm install -g wake
 ```
 
 
+## Options
+
+* `sourceDirectory`
+* `targetDirectory`
+* `layout`
+* `builds`
+* `builds.$.minify`
+* `builds.$.safe`
+* `builds.$.separator`
+* `builds.$.sourceMap`
+* `builds.$.suffix`
+* `targets`
+* `targets.$.builds`
+* `targets.$.directory`
+* `targets.$.extend`
+* `targets.$.files`
+* `targets.$.mode`
+
+
 ## License
 
 (The MIT License)
