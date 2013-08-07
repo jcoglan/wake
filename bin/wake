@@ -33,6 +33,6 @@ if (!config) {
   process.exit(1);
 }
 
-var build = wake.build(path.resolve(process.cwd()), config);
+var build = wake.build(process.cwd(), config);
 build.run();
 
