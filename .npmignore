@@ -1,5 +1,6 @@
 .git
 .gitignore
 .npmignore
+example
 node_modules
 

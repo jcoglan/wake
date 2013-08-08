@@ -1,0 +1,5 @@
+@import url(./relative.css);
+
+.foo {
+  font-family: Futura, sans-serif;
+}

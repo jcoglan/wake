@@ -1,0 +1,21 @@
+{
+  "name": "wake-example",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "rm -rf build && ../bin/wake"
+  },
+  "wake": {
+    "css": {
+      "sourceDirectory": "source/css",
+      "targetDirectory": "build/css",
+      "rootDirectory":   "source",
+      "builds": {
+        "src": {"minify": false},
+        "min": {"minify": true, "tag": "suffix", "digest": true}
+      },
+      "targets": {
+        "application": [  "bar",
+                          "foo"
+        ]
+} } } }
+
