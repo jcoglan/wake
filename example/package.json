@@ -17,5 +17,16 @@
         "application": [  "bar",
                           "foo"
         ]
+      }
+    },
+    "binary": {
+      "sourceDirectory": "source/images",
+      "targetDirectory": "build/assets",
+      "builds": {
+        "src": {"digest": true}
+      },
+      "targets": {
+        "a/deep/buried/image.jpg": "pumpkin.jpg",
+        "pumpkin.jpg": ""
 } } } }
 

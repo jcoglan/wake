@@ -1,4 +1,4 @@
 .bar {
-  background-image: url(../images/pumpkin.jpg);
+  background-image: url("../images/pumpkin.jpg");
   color: blue;
 }
