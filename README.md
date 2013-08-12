@@ -1,7 +1,12 @@
 # wake
 
-A build tool for web stuff. Mostly it concats, minifies and source-maps
-JavaScript according to a JSON config file.
+A build tool for web stuff. Some things it does:
+
+* concats and minifies CSS and JavaScript
+* creates files with a content hash in the filename
+* inlines local stylesheets referenced by `@import` statements
+* rewrites `url()` references in CSS so that generated code just works
+* generates JS source maps with correct relative path references
 
 
 ## Installation
@@ -9,25 +14,6 @@ JavaScript according to a JSON config file.
 ```
 $ npm install -g wake
 ```
-
-
-## Options
-
-* `sourceDirectory`
-* `targetDirectory`
-* `layout`
-* `builds`
-* `builds.$.minify`
-* `builds.$.safe`
-* `builds.$.separator`
-* `builds.$.sourceMap`
-* `builds.$.suffix`
-* `targets`
-* `targets.$.builds`
-* `targets.$.directory`
-* `targets.$.extend`
-* `targets.$.files`
-* `targets.$.mode`
 
 
 ## License
