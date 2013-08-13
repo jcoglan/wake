@@ -8,23 +8,24 @@
     "css": {
       "sourceDirectory": "source/css",
       "targetDirectory": "build/css",
-      "rootDirectory":   "source",
+
+      "sourceRoot":      "source",
+      "targetRoot":      "build",
+
       "builds": {
-        "src": {"minify": false},
+        "src": {
+          "minify": false,
+          "hosts":  ["https://a.com", "http://b.org/public"]
+        },
         "min": {"minify": true, "tag": "suffix", "digest": true}
       },
       "targets": {
-        "application": [  "bar",
-                          "foo"
-        ]
+        "application": [ "bar", "foo" ]
       }
     },
     "binary": {
       "sourceDirectory": "source/images",
       "targetDirectory": "build/assets",
-      "builds": {
-        "src": {"digest": true}
-      },
       "targets": {
         "a/deep/buried/image.jpg": "pumpkin.jpg",
         "pumpkin.jpg": ""
