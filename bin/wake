@@ -3,7 +3,8 @@
 var wake   = require('../lib/wake'),
     fs     = require('fs'),
     path   = require('path'),
-    exists = fs.existsSync || path.existsSync;
+    exists = fs.existsSync || path.existsSync,
+    nopt   = require('nopt');
 
 var pkgJSON  = 'package.json',
     wakeJSON = 'wake.json',
@@ -34,5 +35,22 @@ if (!config) {
 }
 
 var build = wake.build(process.cwd(), config);
-build.run();
+
+var options = nopt({
+  group:    String,
+  name:     String,
+  build:    String,
+  sources:  Boolean,
+  targets:  Boolean
+});
+
+if (options.sources) {
+  build.generateTargets();
+  console.log(build.getGroup(options.group).getPackage(options.name).getSources().join('\n'));
+} else if (options.targets) {
+  build.generateTargets();
+  console.log(build.getGroup(options.group).getPackage(options.name).getTarget(options.build));
+} else {
+  build.run();
+}
 

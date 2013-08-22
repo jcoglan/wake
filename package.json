@@ -15,6 +15,7 @@
                       , "ejs": ""
                       , "glob": ""
                       , "mkdirp": ""
+                      , "nopt": ""
                       , "uglify-js": ">=2.0.0"
                       }
 
