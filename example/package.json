@@ -18,7 +18,7 @@
           "digest": false,
           "hosts":  ["https://a.com", "http://b.org/public"]
         },
-        "min": {"minify": true, "tag": "suffix", "digest": true}
+        "min": {"minify": true, "inline": true, "tag": "suffix", "digest": true}
       },
       "targets": {
         "application": [ "bar", "foo" ]
