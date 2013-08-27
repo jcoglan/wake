@@ -3,3 +3,7 @@
 .absolute {
   display: block;
 }
+
+.abs:after {
+  content: " some  words   here ";
+}
