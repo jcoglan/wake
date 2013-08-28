@@ -1,0 +1,32 @@
+{
+  "css": {
+    "application": {
+      "sources": [
+        "/home/james/projects/wake/example/source/css/bar.css",
+        "/home/james/projects/wake/example/source/css/foo.css"
+      ],
+      "builds": {
+        "src": "/home/james/projects/wake/example/build/css/application.css",
+        "min": "/home/james/projects/wake/example/build/css/application-min.css"
+      }
+    }
+  },
+  "binary": {
+    "a/deep/buried/image.jpg": {
+      "sources": [
+        "/home/james/projects/wake/example/source/images/pumpkin.jpg"
+      ],
+      "builds": {
+        "min": "/home/james/projects/wake/example/build/assets/a/deep/buried/image.jpg"
+      }
+    },
+    "pumpkin.jpg": {
+      "sources": [
+        "/home/james/projects/wake/example/source/images/pumpkin.jpg"
+      ],
+      "builds": {
+        "min": "/home/james/projects/wake/example/build/assets/pumpkin.jpg"
+      }
+    }
+  }
+}
