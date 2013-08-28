@@ -8,17 +8,16 @@
     "css": {
       "sourceDirectory": "source/css",
       "targetDirectory": "build/css",
-
       "sourceRoot":      "source",
       "targetRoot":      "build",
-
+      "hosts": {
+        "default": {
+          "cdn": ["https://a.com", "http://b.org/public"]
+        }
+      },
       "builds": {
-        "src": {
-          "minify": false,
-          "digest": false,
-          "hosts":  ["https://a.com", "http://b.org/public"]
-        },
-        "min": {"minify": true, "inline": true, "tag": "suffix", "digest": true}
+        "src": {"minify": false, "digest": false, "hosts": "cdn"},
+        "min": {"minify": true, "digest": true, "inline": true, "tag": "suffix"}
       },
       "targets": {
         "application": [ "bar", "foo" ]

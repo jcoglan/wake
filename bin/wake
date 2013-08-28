@@ -34,7 +34,7 @@ if (!config) {
   process.exit(1);
 }
 
-var build = wake.build(process.cwd(), config);
+var build = wake.build(process.cwd(), process.env.WAKE_ENV, config);
 
 var options = nopt({
   group:    String,
