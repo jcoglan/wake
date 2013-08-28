@@ -34,23 +34,9 @@ if (!config) {
   process.exit(1);
 }
 
+var options = nopt({cache: Boolean});
 var build = wake.build(process.cwd(), process.env.WAKE_ENV, config);
 
-var options = nopt({
-  group:    String,
-  name:     String,
-  build:    String,
-  sources:  Boolean,
-  targets:  Boolean
-});
-
-if (options.sources) {
-  build.generateTargets();
-  console.log(build.getGroup(options.group).getPackage(options.name).getSources().join('\n'));
-} else if (options.targets) {
-  build.generateTargets();
-  console.log(build.getGroup(options.group).getPackage(options.name).getTarget(options.build));
-} else {
-  build.run();
-}
+build.cache();
+if (!options.cache) build.updateTargets();
 
