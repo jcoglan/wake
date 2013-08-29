@@ -11,7 +11,8 @@
 , "bin"             : {"wake": "./bin/wake"}
 , "preferGlobal"    : true
 
-, "dependencies"    : { "csso": ">=1.3.0"
+, "dependencies"    : { "clean-css": ">=1.0.0"
+                      , "csso": ">=1.3.0"
                       , "ejs": ""
                       , "glob": ""
                       , "mime": ""
