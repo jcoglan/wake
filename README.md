@@ -304,7 +304,7 @@ settings, these are the options you can set:
 #### JavaScript assets
 
 * `minify` - set to `false` if you only want the files to be concatenated, not
-  minified.
+  minified
 * `safe` - set to `true` if you want the minifier to avoid potentially unsafe
   optimisations
 * `separator` - sets the string inserted between files during concatenation, the
@@ -318,7 +318,7 @@ settings, these are the options you can set:
 * `inline` - set to `true` if you want the minifier to inline images, fonts and
   other files referenced by `url()` expressions to be inlined as data URIs
 * `minify` - set to `false` if you only want the files to be concatenated, not
-  minified.
+  minified
 * `safe` - set to `true` if you want the minifier to avoid potentially unsafe
   optimisations
 * `separator` - sets the string inserted between files during concatenation, the
