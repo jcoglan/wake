@@ -192,6 +192,85 @@ application find the hashed filename for each file it wants to link to.
 ```
 
 
+### Customising the build
+
+`wake` comes with default behaviour that is optimised for application
+development, but it can be customised to provide additional information your app
+might need, or to change how it builds files. Consider our original example
+JavaScript configuration:
+
+```js
+    "javascript": {
+      "sourceDirectory": "public/javascripts",
+      "targetDirectory": "public/assets",
+      "targets": {
+        "scripts.js": ["foo.js", "bar.js"]
+      }
+    }
+```
+
+The source files are converted into the target files using a set of *build
+settings*. You can specify multiple builds with different settings. For example,
+this configuration generates a minified and unminified copy of the build with no
+content hash, which is more suitable for library development:
+
+```js
+    "javascript": {
+      "sourceDirectory": "public/javascripts",
+      "targetDirectory": "public/assets",
+      "builds": {
+        "src": {"digest": false, "minify": false},
+        "min": {"digest": false, "minify": true, "tag": "suffix", "sourceMap": "src"}
+      },
+      "targets": {
+        "scripts.js": ["foo.js", "bar.js"]
+      }
+    }
+```
+
+This generates three files: `scripts.js`, `scripts-min.js` and
+`scripts-min.js.map`, where the source map references `scripts.js` instead of
+`foo.js` and `bar.js`.
+
+By default, `wake` generates build settings for each group with a build called
+`min` that's optimised for application development. If you specify your own
+settings, these are the options you can set:
+
+#### All asset types
+
+* `digest` - set to `false` if you don't want content hashes in generated
+  filenames
+* `tag` - specifies where to put the build name in the generated filenames.
+  * `prefix` puts the build name at the start of the filename, e.g.
+    `min-scripts.js`
+  * `suffix` puts the build name the end of the filename, e.g. `scripts-min.js`
+  * `directory` puts the file inside a directory named for the build, e.g.
+    `min/scripts.js`
+
+#### JavaScript assets
+
+* `minify` - set to `false` if you only want the files to be concatenated, not
+  minified.
+* `safe` - set to `true` if you want the minifier to avoid potentially unsafe
+  optimisations
+* `separator` - sets the string inserted between files during concatenation, the
+  default is two line feed characters
+* `sourceMap` - set to `false` if you don't want a source map to be generated,
+  set it to the name of a build (as above) if you want the map to reference that
+  build as the source rather than the original source files
+
+#### CSS assets
+
+* `inline` - set to `true` if you want the minifier to inline images, fonts and
+  other files referenced by `url()` expressions to be inlined as data URIs
+* `minify` - set to `false` if you only want the files to be concatenated, not
+  minified.
+* `safe` - set to `true` if you want the minifier to avoid potentially unsafe
+  optimisations
+* `separator` - sets the string inserted between files during concatenation, the
+  default is two line feed characters
+
+
 
 ## License
 
