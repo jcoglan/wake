@@ -180,7 +180,9 @@ directory that contains targets with content hashes in their filenames, and
 contains a mapping from the canonical filename to the hashed one. This lets an
 application find the hashed filename for each file it wants to link to.
 
-```
+```js
+// public/assets/.manifest.json
+
 {
   "scripts.js": "scripts-bb210c6.js",
   "scripts.js.map": "scripts-300b304.js.map",
