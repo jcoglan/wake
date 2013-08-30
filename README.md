@@ -181,7 +181,7 @@ asset in your configuration. For our example, this looks like:
 }
 ```
 
-The second metadata file in `.manifest.json`. This file is generated in each
+The second metadata file is `.manifest.json`. This file is generated in each
 directory that contains targets with content hashes in their filenames, and
 contains a mapping from the canonical filename to the hashed one. This lets an
 application find the hashed filename for each file it wants to link to.
