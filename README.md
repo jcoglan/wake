@@ -19,9 +19,10 @@ web framework. You can use it in any project, and it generates enough metadata
 files that an application can easily find out which files it should generate
 links to.
 
-If you want to compile other languages to JS/CSS, that can be done as a separate
-step using Make (or one of its clones), or by running tasks on file changes
-using Guard.
+If you want to compile other languages to JS/CSS, or use a dependency resolver
+like Browserify, that can be done as a separate step using Make (or one of its
+clones), or by running tasks on file changes using Guard. After this compilation
+step you can run `wake` on the resulting files to optimise them.
 
 Here's a few of the things `wake` can do with your files:
 
