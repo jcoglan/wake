@@ -45,9 +45,14 @@ $ npm install -g wake
 `wake` is configured using data stored in your project's `package.json` file.
 Its config has three sections: `javascript`, `css` and `binary`. Each section
 has a `sourceDirectory`, which is the directory containing all the source files,
-and a `targetDirectory`, which is where the optimised files are written to. The
-only other required field is `targets`, which lists the name of each optimised
-file and the names of the source files it should contain.
+and a `targetDirectory`, which is where the optimised files are written to.
+
+The `css` group also requires a `sourceRoot` setting, which tells `wake` where
+to resolve absolute paths in `url()` expressions when it is inlining `@import`
+statements and rewriting path references.
+
+The only other required field is `targets`, which lists the name of each
+optimised file and the names of the source files it should contain.
 
 ```js
 // package.json
@@ -71,6 +76,7 @@ file and the names of the source files it should contain.
     "css": {
       "sourceDirectory": "public/stylesheets",
       "targetDirectory": "public/assets",
+      "sourceRoot":      "public",
       "targets": {
         "styles.css": ["navigation.css", "footer.css"]
       }
@@ -192,6 +198,54 @@ application find the hashed filename for each file it wants to link to.
 ```
 
 
+### Configuration short-hands
+
+It can be cumbersome to list out every file in the project, especially for
+binary files which just copy one file from one place to another. So, there are
+two shorthands you can use to make things easier.
+
+#### Blank targets
+
+If you give the empty string in place of the source list for a target, `wake`
+just inserts the name of the target file as the name of the source. So, these
+are equivalent:
+
+```js
+      "targets": {                "targets": {
+        "logo.png": ""              "logo.png": ["logo.png"]
+      }                           }
+```
+
+#### Path globbing
+
+Rather than list every file in the project, you can use a glob. For example,
+this generates a target for every CSS file in `public/stylesheets` (but not its
+subdirectories):
+
+```js
+    "css": {
+      "sourceDirectory": "public/stylesheets",
+      "targetDirectory": "public/assets",
+      "targets": {
+        "*.css": ""
+      }
+    }
+```
+
+And this generates a target for each file in `public/images` and all its
+subdirectories:
+
+```js
+    "binary": {
+      "sourceDirectory": "public/images",
+      "targetDirectory": "public/assets",
+      "targets": {
+        "**/*.*": ""
+      }
+    }
+```
+
+
 ### Customising the build
 
 `wake` comes with default behaviour that is optimised for application
@@ -270,6 +324,61 @@ settings, these are the options you can set:
 * `separator` - sets the string inserted between files during concatenation, the
   default is two line feed characters
 
+
+### CSS asset hosts
+
+If you're using multiple hostnames to serve assets from, you'll want to insert
+these hostnames into the optimised CSS. You might have different hostnames for
+HTTPS vs HTTP pages. To make `wake` add asset hosts to `url()` expressions, you
+need to specifiy a few things in your `css` group config:
+
+* `targetRoot` - this is the document root of the server that provides your
+  static assets, it will often be the same as `sourceRoot`
+* `hosts` - this is an index of all your asset hosts, indexed by environment and
+  type
+* `builds` - each build must say which type of host it should use, if any
+
+Here's an example. We have two sets of asset hosts, one called `http` and one
+called `https`. Each environment we deploy our app to has a different list of
+hostnames for each set. The `hosts` setting below lists the hosts for each set
+for the `production` and `staging` environments.
+
+```js
+    "css": {
+      "sourceDirectory": "public/stylesheets",
+      "targetDirectory": "public/assets",
+      "sourceRoot":      "public",
+      "targetRoot":      "public",
+      "hosts": {
+        "production": {
+          "http":  ["http://static1.example.com", "http://static2.example.com"],
+          "https": ["https://ssl1.example.com", "https://ssl2.example.com"]
+        },
+        "staging": {
+          "http":  ["http://static1.staging.example.net", "http://static2.staging.example.net"],
+          "https": ["https://ssl1.staging.example.net", "https://ssl2.staging.example.net"]
+        }
+      },
+      "builds": {
+        "min": {"hosts": "http"},
+        "ssl": {"hosts": "https", "tag": "suffix"}
+      },
+      "targets": {
+        "styles.css": ["navigation.css", "footer.css"]
+      }
+    }
+```
+
+The two `builds` here will generate two files: `styles.css` will use the `http`
+set of hosts, and `styles-ssl.css` will use the `https` set. Which exact list of
+hosts you get depends on the environment, which you specify on the command line:
+
+```
+$ WAKE_ENV=production ./node_modules/.bin/wake
+```
+
+If you don't specify an environment, `wake` will use the host sets under
+`hosts.default`, if you have specified a default set.
 
 
 ## License
