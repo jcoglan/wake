@@ -23,7 +23,7 @@ If you want to compile other languages to JS/CSS, that can be done as a separate
 step using Make (or one of its clones), or by running tasks on file changes
 using Guard.
 
-Here's a few of the things `wake` will do with your files:
+Here's a few of the things `wake` can do with your files:
 
 * Concatenate and minify JavaScript and CSS files
 * Generate optimised files with a content hash in the filename
@@ -31,6 +31,7 @@ Here's a few of the things `wake` will do with your files:
 * Resolve and inline CSS files referenced by `@import` statements
 * Rewrite CSS `url()` paths so the optimised CSS references the same image/font
   files as the source code
+* Inline files referenced by `url()` expressions as data URIs
 
 
 ## Installation
