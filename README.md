@@ -16,7 +16,7 @@ settings are tailored to application deployment.
 
 Because it only implements the optimisation phase, `wake` is not coupled to any
 web framework. You can use it in any project, and it generates enough metadata
-files that an application can easily find out which files in should generate
+files that an application can easily find out which files it should generate
 links to.
 
 If you want to compile other languages to JS/CSS, that can be done as a separate
@@ -29,7 +29,7 @@ Here's a few of the things `wake` will do with your files:
 * Generate optimised files with a content hash in the filename
 * Generate source maps for JavaScript with correct relative path references
 * Resolve and inline CSS files referenced by `@import` statements
-* Rewrite CSS `url()` paths so the compiled CSS references the same image/font
+* Rewrite CSS `url()` paths so the optimised CSS references the same image/font
   files as the source code
 
 
@@ -102,7 +102,8 @@ This configuration takes the following project tree:
         └── navigation.css
 ```
 
-and generates the following files:
+and generates the following files when you run `./node_modules/.bin/wake`:
+remove_
 
 ```
 .
@@ -120,11 +121,74 @@ and generates the following files:
         └── logo-2fa8d38.png
 ```
 
+
+### Generated files
+
 Two copies of each target are generated: one with a content hash in the filename
 and one without. The hashed names are for applications that can dynamically
 detect which files to serve, and the hashes serve to make the files indefinitely
 cacheable. The un-hashed names are for things that need predictable filenames,
 like the static page outside your web stack that runs your JS tests.
+
+The build generates two metadata files that give you information about the
+generated assets, to make it easy to generate links to them from your
+application.
+
+`.wake.json` is generated in the root of the project and contains an index
+telling you the absolute paths of the source files and target files for each
+asset in your configuration. For our example, this looks like:
+
+```js
+{
+  "javascript": {
+    "scripts.js": {
+      "sources": [
+        "/home/jcoglan/projects/wake/public/javascripts/foo.js",
+        "/home/jcoglan/projects/wake/public/javascripts/bar.js"
+      ],
+      "targets": {
+        "min": "/home/jcoglan/projects/wake/public/assets/scripts.js"
+      }
+    }
+  },
+  "css": {
+    "styles.css": {
+      "sources": [
+        "/home/jcoglan/projects/wake/public/stylesheets/navigation.css",
+        "/home/jcoglan/projects/wake/public/stylesheets/footer.css"
+      ],
+      "targets": {
+        "min": "/home/jcoglan/projects/wake/public/assets/styles.css"
+      }
+    }
+  },
+  "binary": {
+    "logo.png": {
+      "sources": [
+        "/home/jcoglan/projects/wake/public/images/logo.png"
+      ],
+      "targets": {
+        "min": "/home/jcoglan/projects/wake/public/assets/logo.png"
+      }
+    }
+  }
+}
+```
+
+The second metadata file in `.manifest.json`. This file is generated in each
+directory that contains targets with content hashes in their filenames, and
+contains a mapping from the canonical filename to the hashed one. This lets an
+application find the hashed filename for each file it wants to link to.
+
+```
+{
+  "scripts.js": "scripts-bb210c6.js",
+  "scripts.js.map": "scripts-300b304.js.map",
+  "styles.css": "styles-5a2ceb1.css",
+  "logo.png": "logo-2fa8d38.png"
+}
+```
+
 
 
 ## License
