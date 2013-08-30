@@ -117,14 +117,14 @@ remove_
 └── public
     └── assets
         ├── .manifest.json
+        ├── logo.png
+        ├── logo-2fa8d38.png
         ├── scripts.js
         ├── scripts-bb210c6.js
         ├── scripts.js.map
         ├── scripts-300b304.js.map
         ├── styles.css
-        ├── styles-5a2ceb1.css
-        ├── logo.png
-        └── logo-2fa8d38.png
+        └── styles-5a2ceb1.css
 ```
 
 
