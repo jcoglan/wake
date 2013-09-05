@@ -111,7 +111,6 @@ This configuration takes the following project tree:
 ```
 
 and generates the following files when you run `./node_modules/.bin/wake`:
-remove_
 
 ```
 .
