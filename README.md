@@ -30,8 +30,8 @@ Here's a few of the things `wake` can do with your files:
 * Generate optimised files with a content hash in the filename
 * Generate source maps for JavaScript with correct relative path references
 * Resolve and inline CSS files referenced by `@import` statements
-* Rewrite CSS `url()` paths so the optimised CSS references the same image/font
-  files as the source code
+* Rewrite CSS `url()` paths so the optimised CSS references the same files as
+  the source code
 * Inline files referenced by `url()` expressions as data URIs
 
 
@@ -317,8 +317,8 @@ settings, these are the options you can set:
 
 #### CSS assets
 
-* `inline` - set to `true` if you want the minifier to inline images, fonts and
-  other files referenced by `url()` expressions to be inlined as data URIs
+* `inline` - set to `true` if you want images, fonts and other files referenced
+  by `url()` expressions to be inlined as data URIs
 * `minify` - set to `false` if you only want the files to be concatenated, not
   minified
 * `safe` - set to `true` if you want the minifier to avoid potentially unsafe
