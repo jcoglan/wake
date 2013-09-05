@@ -44,6 +44,10 @@ $ npm install -g wake
 
 ## Usage
 
+`wake` is a command-line program; if you installed it globally then type `wake`
+to run it, or if you installed it inside your project then run
+`./node_modules/.bin/wake`.
+
 `wake` is configured using data stored in your project's `package.json` file.
 Its config has three sections: `javascript`, `css` and `binary`. Each section
 has a `sourceDirectory`, which is the directory containing all the source files,
@@ -110,7 +114,7 @@ This configuration takes the following project tree:
         └── navigation.css
 ```
 
-and generates the following files when you run `./node_modules/.bin/wake`:
+and generates the following files when you run `wake`:
 
 ```
 .
@@ -375,7 +379,7 @@ set of hosts, and `styles-ssl.css` will use the `https` set. Which exact list of
 hosts you get depends on the environment, which you specify on the command line:
 
 ```
-$ WAKE_ENV=production ./node_modules/.bin/wake
+$ WAKE_ENV=production wake
 ```
 
 If you don't specify an environment, `wake` will use the host sets under
