@@ -154,32 +154,32 @@ asset in your configuration. For our example, this looks like:
   "javascript": {
     "scripts.js": {
       "sources": [
-        "/home/jcoglan/projects/wake/public/javascripts/foo.js",
-        "/home/jcoglan/projects/wake/public/javascripts/bar.js"
+        "public/javascripts/foo.js",
+        "public/javascripts/bar.js"
       ],
       "targets": {
-        "min": "/home/jcoglan/projects/wake/public/assets/scripts.js"
+        "min": "public/assets/scripts.js"
       }
     }
   },
   "css": {
     "styles.css": {
       "sources": [
-        "/home/jcoglan/projects/wake/public/stylesheets/navigation.css",
-        "/home/jcoglan/projects/wake/public/stylesheets/footer.css"
+        "public/stylesheets/navigation.css",
+        "public/stylesheets/footer.css"
       ],
       "targets": {
-        "min": "/home/jcoglan/projects/wake/public/assets/styles.css"
+        "min": "public/assets/styles.css"
       }
     }
   },
   "binary": {
     "logo.png": {
       "sources": [
-        "/home/jcoglan/projects/wake/public/images/logo.png"
+        "public/images/logo.png"
       ],
       "targets": {
-        "min": "/home/jcoglan/projects/wake/public/assets/logo.png"
+        "min": "public/assets/logo.png"
       }
     }
   }
