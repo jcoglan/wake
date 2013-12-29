@@ -5,6 +5,6 @@
 }
 
 .bar {
-  background-image: url("../images/pumpkin.jpg");
+  background-image: url("../images/pumpkin.jpg?iefix");
   color: blue;
 }

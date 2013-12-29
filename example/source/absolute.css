@@ -1,4 +1,4 @@
-@import url(http://example.com/style.css);
+@import url(http://example.com/style.css?query);
 
 .absolute {
   display: block;
