@@ -39,4 +39,3 @@ var build = wake.build(process.cwd(), process.env.WAKE_ENV, config);
 
 build.cache();
 if (!options.cache) build.updateTargets();
-
